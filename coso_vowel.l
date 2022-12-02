@@ -1,24 +1,21 @@
 %{
 #include<stdio.h>
-int v=0,c=0;
+#include<string.h>
+int v = 0;
 %}
-  
 
 %%
-([ ]) ;
-([\t\n]) {printf("consonant:%d Vowel:%d\n",c,v);c=v=0;}
-([aeiouAEIOU])   v++;
-([^aeiouAEIOU]) {c++;}
+([' ']) ;
+([\n]) {ECHO;}
+[aeiouAEIOU] {v++;}  
 
 %%
 
-  
-
+int yywrap(void){ }
+ 
 int main()
-{   
-    printf("Enter the input String: ");
+{
+    printf("Consonants in the String ");
     yylex();
-    //printf("no of vowels: %d\n",v);
-    //printf("no of consonants: %d",c);
-    
+
 }
