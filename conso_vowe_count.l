@@ -1,22 +1,24 @@
 %{
 #include<stdio.h>
-#include<string.h>
-int v = 0;
+int v=0,c=0;
 %}
+  
 
 %%
-([' ']) ;
-([\n]) {ECHO;}
-[aeiouAEIOU] {v++;}  
+([ ]) ;
+([\t\n]) {printf("consonant:%d Vowel:%d\n",c,v);c=v=0;}
+([aeiouAEIOU])   v++;
+([^aeiouAEIOU]) {c++;}
 
 %%
 
-int yywrap(void){ }
- 
+  
+
 int main()
-{
-    printf("Consonants in the String ");
-    // The function that starts the analysis
+{   
+    printf("Enter the input String: ");
     yylex();
-
+    //printf("no of vowels: %d\n",v);
+    //printf("no of consonants: %d",c);
+    
 }
